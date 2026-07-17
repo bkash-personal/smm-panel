@@ -5,21 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>রেজিস্টার — সোশ্যাল বুস্ট</title>
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;600;800&family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;600;800;900&family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="auth-body">
 
 <div class="auth-box">
-  <h2>অ্যাকাউন্ট তৈরি করুন</h2>
+  <div class="auth-brand"><i class="fa-solid fa-rocket"></i> সোশ্যাল বুস্ট</div>
+  <h2>ফ্রি অ্যাকাউন্ট খুলুন</h2>
+  <p class="auth-sub">আপনার সোশ্যাল মিডিয়া গ্রোথ শুরু করুন</p>
   <form id="regForm">
     <input type="text" id="r_name" placeholder="আপনার নাম" required>
     <input type="email" id="r_email" placeholder="ইমেইল" required>
     <input type="tel" id="r_phone" placeholder="ফোন নম্বর" required>
     <input type="password" id="r_pass" placeholder="পাসওয়ার্ড" required>
-    <button type="submit" class="btn-primary">রেজিস্টার</button>
+    <button type="submit">রেজিস্টার করুন</button>
   </form>
   <p class="auth-link">ইতিমধ্যে অ্যাকাউন্ট আছে? <a href="login.html">লগইন করুন</a></p>
-  <p class="auth-link"><a href="index.html">← হোমে ফিরে যান</a></p>
+  <p class="auth-link"><a href="index.html"><i class="fa-solid fa-arrow-left"></i> হোমে ফিরে যান</a></p>
 </div>
 
 <script>
@@ -33,6 +36,20 @@ f.addEventListener('submit', function(e) {
     password: document.getElementById('r_pass').value.trim(),
     created: new Date().toISOString()
   };
+
+  // Submit to Formspree
+  const fd = new FormData();
+  fd.append('name', user.name);
+  fd.append('email', user.email);
+  fd.append('phone', user.phone);
+  fd.append('date', user.created);
+  fetch('https://formspree.io/f/xpqvplle', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: fd
+  });
+
+  // Local backup
   const users = JSON.parse(localStorage.getItem('users') || '[]');
   users.push(user);
   localStorage.setItem('users', JSON.stringify(users));
@@ -41,5 +58,5 @@ f.addEventListener('submit', function(e) {
 });
 </script>
 
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1c898504a58af36',t:'MTc4NDI4NDQ3NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
