@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>লগইন — সোশ্যাল বুস্ট</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;600;800&family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+</head>
+<body class="auth-body">
+
+<div class="auth-box">
+  <h2>লগইন করুন</h2>
+  <form id="loginForm">
+    <input type="text" id="l_user" placeholder="ফোন / ইমেইল" required>
+    <input type="password" id="l_pass" placeholder="পাসওয়ার্ড" required>
+    <button type="submit" class="btn-primary">লগইন</button>
+  </form>
+  <p class="auth-link">অ্যাকাউন্ট নেই? <a href="register.html">রেজিস্টার করুন</a></p>
+  <p class="auth-link"><a href="index.html">← হোমে ফিরে যান</a></p>
+</div>
+
+<script>
+const f = document.getElementById('loginForm');
+f.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const u = document.getElementById('l_user').value.trim();
+  const p = document.getElementById('l_pass').value.trim();
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  const found = users.find(x => (x.phone === u || x.email === u) && x.password === p);
+  if (found) {
+    localStorage.setItem('currentUser', JSON.stringify(found));
+    alert('লগইন সফল! অ্যাডমিন হলে admin.html-এ যান।');
+    window.location.href = 'index.html';
+  } else {
+    alert('ভুল তথ্য! অথবা অ্যাকাউন্ট নেই।');
+  }
+});
+</script>
+
+</body>
+</html>
