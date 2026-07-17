@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Order — সোশ্যাল বুস্ট</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;600;800;900&family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+body { background: #0b0d14; color: #e0e0e8; font-family: 'Noto Sans Bengali', 'Inter', sans-serif; }
+.nav-top { display: flex; align-items: center; justify-content: space-between; padding: 1rem 5%; background: linear-gradient(90deg, #16182a, #12142b); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.nav-top .logo { color: #fff; font-weight: 900; font-size: 1.2rem; display: flex; align-items: center; gap: 0.4rem; }
+.nav-top .logo i { color: #ff2d75; }
+.nav-top .icons a { color: #ccc; margin-left: 0.75rem; font-size: 1rem; transition: color 0.2s; }
+.nav-top .icons a:hover { color: #fff; }
+.nav-top .user-btn { background: #7b2cbf; color: #fff; padding: 0.35rem 1rem; border-radius: 999px; font-weight: 700; font-size: 0.85rem; text-decoration: none; margin-left: 0.5rem; }
+
+.platform-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.6rem; padding: 1.25rem 5%; max-width: 1400px; margin: 0 auto; }
+.platform-btn { background: #16182a; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.6rem; padding: 0.75rem 0.5rem; color: #ccc; text-decoration: none; font-weight: 700; font-size: 0.85rem; text-align: center; transition: background 0.15s, border-color 0.15s; }
+.platform-btn:hover { background: #1e2140; border-color: rgba(255,255,255,0.15); color: #fff; }
+.platform-btn i { display: block; font-size: 1.2rem; margin-bottom: 0.25rem; }
+
+.order-layout { display: grid; grid-template-columns: 380px 1fr; gap: 1.5rem; max-width: 1400px; margin: 0 auto; padding: 1rem 5% 3rem; }
+
+/* Left Form */
+.form-card { background: #12142b; border-radius: 1rem; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.06); }
+.form-card h2 { font-size: 1.1rem; font-weight: 900; color: #fff; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.form-card h2 a { background: linear-gradient(135deg, #ff2d75, #7b2cbf); color: #fff; padding: 0.25rem 0.6rem; border-radius: 0.35rem; font-size: 0.8rem; text-decoration: none; margin-left: auto; }
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; color: #aaa; font-weight: 700; font-size: 0.8rem; margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 0.02em; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.7rem 0.75rem; border-radius: 0.5rem; background: #0b0d14; border: 1px solid rgba(255,255,255,0.1); color: #fff; font-family: inherit; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+.form-group input:focus, .form-group select:focus { border-color: #ff2d75; }
+
+/* Right Info Card */
+.info-card { background: linear-gradient(135deg, #1b2036, #12142b); border-radius: 1rem; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.08); }
+.info-card .service-title { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 1rem; letter-spacing: -0.02em; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.75rem; }
+.info-card .service-price { color: #7ee787; font-weight: 800; font-size: 0.95rem; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.info-item { background: rgba(255,255,255,0.03); border-radius: 0.6rem; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.05); }
+.info-item .label { font-size: 0.75rem; color: #777; font-weight: 600; text-transform: uppercase; margin-bottom: 0.2rem; letter-spacing: 0.02em; }
+.info-item .value { font-size: 0.9rem; color: #e0e0e8; font-weight: 700; display: flex; align-items: center; gap: 0.4rem; }
+.info-item .value i { color: #7b2cbf; font-size: 0.85rem; }
+@media (max-width: 1000px) { .order-layout { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav class="nav-top">
+  <a href="#" class="logo"><i class="fa-solid fa-rocket"></i> সোশ্যাল বুস্ট</a>
+  <div class="icons">
+    <a href="#"><i class="fa-brands fa-telegram"></i></a>
+    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+    <a href="#"><i class="fa-solid fa-bell"></i></a>
+    <a href="#"><i class="fa-solid fa-moon"></i></a>
+    <a href="#" class="user-btn">BDT ৳</a>
+    <a href="#"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=60&q=80" alt="user" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;"></a>
+  </div>
+</nav>
+
+<div class="platform-grid">
+  <a href="#" class="platform-btn"><i class="fa-solid fa-layer-group"></i> All</a>
+  <a href="#" class="platform-btn"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+  <a href="#" class="platform-btn"><i class="fa-brands fa-instagram"></i> Instagram</a>
+  <a href="#" class="platform-btn"><i class="fa-brands fa-telegram"></i> Telegram</a>
+  <a href="#" class="platform-btn"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+  <a href="#" class="platform-btn"><i class="fa-brands fa-youtube"></i> YouTube</a>
+  <a href="#" class="platform-btn"><i class="fa-brands fa-twitch"></i> Twitch</a>
+  <a href="#" class="platform-btn"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+  <a href="#" class="platform-btn"><i class="fa-brands fa-x-twitter"></i> Twitter</a>
+  <a href="#" class="platform-btn"><i class="fa-brands fa-discord"></i> Discord</a>
+  <a href="#" class="platform-btn"><i class="fa-brands fa-spotify"></i> Spotify</a>
+  <a href="#" class="platform-btn"><i class="fa-solid fa-globe"></i> Other</a>
+</div>
+
+<main class="order-layout">
+
+  <!-- Left Form -->
+  <section class="form-card">
+    <h2>Create Order <a href="#">☰</a></h2>
+    <form class="order-form" onsubmit="event.preventDefault(); this.innerHTML='<h3 style=\'color:#7ee787;\'>অর্ডার সফল! আমরা যোগাযোগ করব।</h3>';">
+      <div class="form-group">
+        <label><i class="fa-solid fa-magnifying-glass"></i> Search Services...</label>
+        <input type="text" placeholder="Type to search..." value="978 - Viral Hooks Videos | 1-350 Videos | No Copyright">
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <select>
+          <option>Viral Hooks Videos</option>
+          <option>TikTok Services</option>
+          <option>Instagram Services</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Service</label>
+        <select>
+          <option>978 - Viral Hooks Videos | 1-350 Videos | No Copyright ≈ ৳26.00</option>
+          <option>1000 TikTok Like ≈ ৳100</option>
+          <option>2000 Follower ≈ ৳100</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Link</label>
+        <input type="text" placeholder="https://..." value="">
+      </div>
+      <div class="form-group">
+        <label>Average time <i class="fa-solid fa-circle-info" style="color:#777;font-size:0.75rem;"></i></label>
+        <input type="text" value="1 minutes" readonly style="background:#0b0d14;border-color:rgba(255,255,255,0.1);color:#aaa;">
+      </div>
+      <div class="form-group">
+        <label>Charge</label>
+        <input type="text" placeholder="৳">
+      </div>
+      <button type="submit" style="width:100%;padding:0.85rem;background:linear-gradient(135deg,#ff2d75,#7b2cbf);color:#fff;border:none;border-radius:0.6rem;font-weight:800;font-size:1rem;cursor:pointer;margin-top:0.5rem;">Create Order</button>
+    </form>
+  </section>
+
+  <!-- Right Info -->
+  <aside class="info-card">
+    <div class="service-title">978 - Viral Hooks Videos | 1-350 Videos | No Copyright ≈ <span class="service-price">৳26.00</span></div>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="label">Link Type</div>
+        <div class="value"><i class="fa-solid fa-link"></i> Any Mail</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Start Time</div>
+        <div class="value"><i class="fa-solid fa-bolt"></i> Instant</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Daily Speed</div>
+        <div class="value"><i class="fa-solid fa-bolt"></i> Instant</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Guarantee</div>
+        <div class="value"><i class="fa-solid fa-shield-halved"></i> No</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Refill</div>
+        <div class="value"><i class="fa-solid fa-rotate"></i> No</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Drop</div>
+        <div class="value"><i class="fa-solid fa-arrow-trend-down"></i> Unknown</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Quality</div>
+        <div class="value"><i class="fa-solid fa-star"></i> Premium</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Average Time</div>
+        <div class="value"><i class="fa-solid fa-clock"></i> 1 minutes</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Quantity</div>
+        <div class="value"><i class="fa-solid fa-layer-group"></i> 0 - 0</div>
+      </div>
+    </div>
+
+    <div class="form-group" style="margin-top:1rem;">
+      <label>Description</label>
+      <textarea rows="3" style="width:100%;padding:0.75rem;background:#0b0d14;border:1px solid rgba(255,255,255,0.1);border-radius:0.5rem;color:#fff;font-family:inherit;font-size:0.9rem;outline:none;resize:vertical;">Enter description or notes here...</textarea>
+    </div>
+  </aside>
+
+</main>
+
+</body>
+</html>
