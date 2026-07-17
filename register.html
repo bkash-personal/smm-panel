@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>রেজিস্টার — সোশ্যাল বুস্ট</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;600;800&family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+</head>
+<body class="auth-body">
+
+<div class="auth-box">
+  <h2>অ্যাকাউন্ট তৈরি করুন</h2>
+  <form id="regForm">
+    <input type="text" id="r_name" placeholder="আপনার নাম" required>
+    <input type="email" id="r_email" placeholder="ইমেইল" required>
+    <input type="tel" id="r_phone" placeholder="ফোন নম্বর" required>
+    <input type="password" id="r_pass" placeholder="পাসওয়ার্ড" required>
+    <button type="submit" class="btn-primary">রেজিস্টার</button>
+  </form>
+  <p class="auth-link">ইতিমধ্যে অ্যাকাউন্ট আছে? <a href="login.html">লগইন করুন</a></p>
+  <p class="auth-link"><a href="index.html">← হোমে ফিরে যান</a></p>
+</div>
+
+<script>
+const f = document.getElementById('regForm');
+f.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const user = {
+    name: document.getElementById('r_name').value.trim(),
+    email: document.getElementById('r_email').value.trim(),
+    phone: document.getElementById('r_phone').value.trim(),
+    password: document.getElementById('r_pass').value.trim(),
+    created: new Date().toISOString()
+  };
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  users.push(user);
+  localStorage.setItem('users', JSON.stringify(users));
+  alert('অ্যাকাউন্ট তৈরি সফল! এখন লগইন করুন।');
+  window.location.href = 'login.html';
+});
+</script>
+
+</body>
+</html>
