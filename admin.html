@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>অ্যাডমিন — সোশ্যাল বুস্ট</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;600;800;900&family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+.admin-gate { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a0b2e, #3d1a6e); }
+.admin-gate-box { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 1.25rem; padding: 2.5rem; width: 100%; max-width: 380px; text-align: center; backdrop-filter: blur(10px); }
+.admin-gate-box h2 { color: #fff; font-size: 1.4rem; margin-bottom: 0.25rem; }
+.admin-gate-box p { color: #ccc; font-size: 0.9rem; margin-bottom: 1.25rem; }
+.admin-gate-box input { width: 100%; padding: 0.8rem 1rem; border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: #fff; font-family: inherit; font-size: 1rem; text-align: center; outline: none; margin-bottom: 1rem; transition: border-color 0.2s; }
+.admin-gate-box input:focus { border-color: #ff2d75; }
+.admin-gate-box button { width: 100%; padding: 0.85rem; border: none; border-radius: 0.5rem; background: linear-gradient(135deg, #ff2d75, #7b2cbf); color: #fff; font-weight: 800; font-family: inherit; font-size: 1rem; cursor: pointer; transition: opacity 0.2s; }
+.admin-gate-box button:hover { opacity: 0.92; }
+.admin-gate-box .note { color: #aaa; font-size: 0.8rem; margin-top: 0.75rem; }
+.dashboard { display: none; }
+</style>
+</head>
+<body>
+
+<!-- Simple Admin Gate -->
+<div id="adminGate" class="admin-gate">
+  <div class="admin-gate-box">
+    <h2><i class="fa-solid fa-lock"></i> অ্যাডমিন অ্যাক্সেস</h2>
+    <p>পাসওয়ার্ড দিয়ে অ্যাডমিন প্যানেল খুলুন</p>
+    <form id="gateForm">
+      <input type="password" id="gatePass" placeholder="অ্যাডমিন পাসওয়ার্ড" required autocomplete="off">
+      <button type="submit">প্রবেশ করুন</button>
+    </form>
+    <p class="note">পাসওয়ার্ড: <strong>bdclick24admin</strong></p>
+    <p class="note"><a href="index.html" style="color:#cbb; text-decoration:none;">← হোমে ফিরে যান</a></p>
+  </div>
+</div>
+
+<!-- Dashboard (hidden until unlocked) -->
+<div id="dashboard" class="dashboard">
+
+<nav class="navbar">
+  <a href="#" class="logo"><i class="fa-solid fa-rocket"></i> অ্যাডমিন প্যানেল</a>
+  <div class="nav-links">
+    <a href="#">ড্যাশবোর্ড</a>
+    <a href="index.html">সাইটে ফিরে যান</a>
+    <a href="#" onclick="logoutAdmin();">লগআউট</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="service-section">
+    <h2><i class="fa-solid fa-chart-line"></i> অ্যাডমিন ড্যাশবোর্ড</h2>
+    <p>ইউজার ও অর্ডার ম্যানেজমেন্ট — ডেমো সিস্টেম</p>
+
+    <div class="cards" style="margin-top: 2rem;">
+      <article class="stat-card">
+        <i class="fa-solid fa-users"></i>
+        <h3>মোট ইউজার</h3>
+        <div class="price" id="statUsers">0</div>
+      </article>
+      <article class="stat-card">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <h3>মোট অর্ডার</h3>
+        <div class="price" id="statOrders">0</div>
+      </article>
+      <article class="stat-card">
+        <i class="fa-solid fa-bolt"></i>
+        <h3>আজকের অর্ডার</h3>
+        <div class="price" id="statToday">0</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="service-detail alt-bg">
+    <h2><i class="fa-solid fa-user-group"></i> ইউজার তালিকা</h2>
+    <div id="userTable" style="overflow-x: auto; margin-top: 1rem;"></div>
+  </section>
+
+  <section class="service-detail">
+    <h2><i class="fa-solid fa-clipboard-list"></i> অর্ডার তালিকা</h2>
+    <div id="orderTable" style="overflow-x: auto; margin-top: 1rem;"></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><i class="fa-solid fa-rocket"></i> সোশ্যাল বুস্ট</div>
+    <div class="footer-links">
+      <a href="index.html">হোম</a>
+      <a href="#">অ্যাডমিন</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>বাংলাদেশের #১ SMM প্যানেল — দ্রুত, সাশ্রয়ী, নিরাপদ</p>
+  </div>
+</footer>
+
+</div>
+
+<script>
+const ADMIN_PASS = 'bdclick24admin';
+
+function showDashboard() {
+  document.getElementById('adminGate').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  loadData();
+}
+
+function logoutAdmin() {
+  document.getElementById('adminGate').style.display = 'flex';
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('gatePass').value = '';
+  window.scrollTo(0,0);
+}
+
+function loadData() {
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+  document.getElementById('statUsers').textContent = users.length;
+  document.getElementById('statOrders').textContent = orders.length;
+  const todayStr = new Date().toISOString().split('T')[0];
+  const todayOrders = orders.filter(o => o.date && o.date.startsWith(todayStr));
+  document.getElementById('statToday').textContent = todayOrders.length;
+
+  let ut = '<table style="width:100%; border-collapse:collapse; color:#1a0b2e; font-size:0.9rem;"><thead><tr style="border-bottom:2px solid #ececf5; background:#faf5ff;"><th style="text-align:left; padding:0.9rem 0.75rem; font-weight:700;">নাম</th><th>ফোন</th><th>ইমেইল</th><th>তারিখ</th></tr></thead><tbody>';
+  users.forEach(u => {
+    ut += '<tr style="border-bottom:1px solid #ececf5; background:#fff;"><td style="padding:0.75rem;"><strong>' + (u.name || '-') + '</strong></td><td>' + (u.phone || '-') + '</td><td>' + (u.email || '-') + '</td><td style="color:#777;">' + (u.created ? new Date(u.created).toLocaleString('bn-BD') : '-') + '</td></tr>';
+  });
+  ut += '</tbody></table>';
+  document.getElementById('userTable').innerHTML = users.length ? ut : '<p style="color:#777;">কোনো ইউজার নেই।</p>';
+
+  let ot = '<table style="width:100%; border-collapse:collapse; color:#1a0b2e; font-size:0.9rem;"><thead><tr style="border-bottom:2px solid #ececf5; background:#faf5ff;"><th style="text-align:left; padding:0.9rem 0.75rem; font-weight:700;">নাম</th><th>ফোন</th><th>সার্ভিস</th><th>পরিমাণ</th><th>তারিখ</th></tr></thead><tbody>';
+  orders.forEach(o => {
+    ot += '<tr style="border-bottom:1px solid #ececf5; background:#fff;"><td style="padding:0.75rem;"><strong>' + (o.name || '-') + '</strong></td><td>' + (o.phone || '-') + '</td><td>' + (o.service || '-') + '</td><td>' + (o.qty || '-') + '</td><td style="color:#777;">' + (o.date ? new Date(o.date).toLocaleString('bn-BD') : '-') + '</td></tr>';
+  });
+  ot += '</tbody></table>';
+  document.getElementById('orderTable').innerHTML = orders.length ? ot : '<p style="color:#777;">কোনো অর্ডার নেই।</p>';
+}
+
+const form = document.getElementById('gateForm');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const val = document.getElementById('gatePass').value.trim();
+  if (val === ADMIN_PASS) {
+    showDashboard();
+  } else {
+    alert('ভুল পাসওয়ার্ড!');
+    document.getElementById('gatePass').value = '';
+  }
+});
+
+// If session exists from before, unlock directly
+if (localStorage.getItem('adminSession')) {
+  showDashboard();
+}
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1c8a24f4fc016d4',t:'MTc4NDI4NDg4NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
