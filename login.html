@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>লগইন — সোশ্যাল বুস্ট</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;600;800;900&family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="auth-body">
+
+<div class="auth-box">
+  <div class="auth-brand"><i class="fa-solid fa-rocket"></i> সোশ্যাল বুস্ট</div>
+  <h2>লগইন করুন</h2>
+  <p class="auth-sub">আপনার অ্যাকাউন্টে প্রবেশ করুন</p>
+  <form id="loginForm">
+    <input type="text" id="l_user" placeholder="ফোন / ইমেইল" required>
+    <input type="password" id="l_pass" placeholder="পাসওয়ার্ড" required>
+    <button type="submit">লগইন করুন</button>
+  </form>
+  <p class="auth-link">অ্যাকাউন্ট নেই? <a href="register.html">ফ্রি রেজিস্টার করুন</a></p>
+  <p class="auth-link"><a href="index.html"><i class="fa-solid fa-arrow-left"></i> হোমে ফিরে যান</a></p>
+</div>
+
+<script>
+const f = document.getElementById('loginForm');
+f.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const u = document.getElementById('l_user').value.trim();
+  const p = document.getElementById('l_pass').value.trim();
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  const found = users.find(x => (x.phone === u || x.email === u) && x.password === p);
+  if (found) {
+    localStorage.setItem('currentUser', JSON.stringify(found));
+    alert('লগইন সফল! ড্যাশবোর্ডে যাচ্ছেন।');
+    window.location.href = 'new-order.html';
+  } else {
+    alert('ভুল তথ্য! অথবা অ্যাকাউন্ট নেই।');
+  }
+});
+</script>
+
+</body>
+</html>
