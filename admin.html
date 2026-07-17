@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>অ্যাডমিন ড্যাশবোর্ড — সোশ্যাল বুস্ট</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;600;800&family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="#" class="logo">অ্যাডমিন প্যানেল</a>
+  <div class="nav-links">
+    <a href="admin.html">ড্যাশবোর্ড</a>
+    <a href="index.html">সাইটে ফিরে যান</a>
+    <a href="#" onclick="localStorage.removeItem('currentUser'); alert('লগআউট');">লগআউট</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="service-section">
+    <h2>অ্যাডমিন ড্যাশবোর্ড</h2>
+    <p>ইউজার ও অর্ডার ম্যানেজমেন্ট — ডেমো সিস্টেম</p>
+
+    <div class="cards" style="margin-top: 2rem;">
+      <article class="card">
+        <h3>মোট ইউজার</h3>
+        <div class="price" id="statUsers">0</div>
+      </article>
+      <article class="card">
+        <h3>মোট অর্ডার</h3>
+        <div class="price" id="statOrders">0</div>
+      </article>
+      <article class="card">
+        <h3>আজকের অর্ডার</h3>
+        <div class="price" id="statToday">0</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="service-section alt">
+    <h2>ইউজার তালিকা</h2>
+    <div id="userTable" style="overflow-x: auto; margin-top: 1rem;"></div>
+  </section>
+
+  <section class="service-section">
+    <h2>অর্ডার তালিকা</h2>
+    <div id="orderTable" style="overflow-x: auto; margin-top: 1rem;"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p>সোশ্যাল বুস্ট — অ্যাডমিন ড্যাশবোর্ড</p>
+</footer>
+
+<script>
+// Load data
+const users = JSON.parse(localStorage.getItem('users') || '[]');
+const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+
+// Stats
+document.getElementById('statUsers').textContent = users.length;
+document.getElementById('statOrders').textContent = orders.length;
+const todayStr = new Date().toISOString().split('T')[0];
+const todayOrders = orders.filter(o => o.date && o.date.startsWith(todayStr));
+document.getElementById('statToday').textContent = todayOrders.length;
+
+// User table
+let ut = '<table style="width:100%; border-collapse:collapse; color:#fff; font-size:0.9rem;"><thead><tr style="border-bottom:2px solid rgba(255,255,255,0.1);"><th style="text-align:left; padding:0.75rem;">নাম</th><th>ফোন</th><th>ইমেইল</th><th>তারিখ</th></tr></thead><tbody>';
+users.forEach(u => {
+  ut += '<tr style="border-bottom:1px solid rgba(255,255,255,0.05);"><td style="padding:0.6rem;">' + (u.name || '-') + '</td><td>' + (u.phone || '-') + '</td><td>' + (u.email || '-') + '</td><td>' + (u.created ? new Date(u.created).toLocaleString('bn-BD') : '-') + '</td></tr>';
+});
+ut += '</tbody></table>';
+document.getElementById('userTable').innerHTML = users.length ? ut : '<p>কোনো ইউজার নেই।</p>';
+
+// Order table
+let ot = '<table style="width:100%; border-collapse:collapse; color:#fff; font-size:0.9rem;"><thead><tr style="border-bottom:2px solid rgba(255,255,255,0.1);"><th style="text-align:left; padding:0.75rem;">নাম</th><th>ফোন</th><th>সার্ভিস</th><th>পরিমাণ</th><th>তারিখ</th></tr></thead><tbody>';
+orders.forEach(o => {
+  ot += '<tr style="border-bottom:1px solid rgba(255,255,255,0.05);"><td style="padding:0.6rem;">' + (o.name || '-') + '</td><td>' + (o.phone || '-') + '</td><td>' + (o.service || '-') + '</td><td>' + (o.qty || '-') + '</td><td>' + (o.date ? o.date : '-') + '</td></tr>';
+});
+ot += '</tbody></table>';
+document.getElementById('orderTable').innerHTML = orders.length ? ot : '<p>কোনো অর্ডার নেই।</p>';
+</script>
+
+</body>
+</html>
