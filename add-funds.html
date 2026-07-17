@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Funds — সোশ্যাল বুস্ট</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;600;800;900&family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+.dashboard-layout { display: grid; grid-template-columns: 260px 1fr 320px; gap: 1.5rem; max-width: 1400px; margin: 0 auto; padding: 2rem 5%; background: #0b0d14; min-height: 100vh; color: #e0e0e8; font-family: 'Noto Sans Bengali', 'Inter', sans-serif; }
+.sidebar { background: linear-gradient(180deg, #16182a, #12142b); border-radius: 1.25rem; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.05); height: fit-content; }
+.profile-card { text-align: center; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 1rem; }
+.profile-card img { width: 72px; height: 72px; border-radius: 50%; border: 3px solid #7b2cbf; object-fit: cover; margin-bottom: 0.5rem; }
+.profile-card h3 { font-weight: 800; color: #fff; margin-bottom: 0.15rem; font-size: 1rem; }
+.profile-card .balance { color: #7ee787; font-weight: 700; font-size: 0.85rem; }
+.profile-card .badge { display: inline-block; background: #ff2d75; color: #fff; font-size: 0.7rem; padding: 0.15rem 0.5rem; border-radius: 999px; font-weight: 700; margin-top: 0.25rem; }
+.sidebar nav ul { list-style: none; }
+.sidebar nav li { margin-bottom: 0.2rem; }
+.sidebar nav a { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 0.75rem; color: #b8bac8; text-decoration: none; border-radius: 0.6rem; font-weight: 600; font-size: 0.9rem; transition: background 0.2s, color 0.2s; }
+.sidebar nav a:hover, .sidebar nav a.active { background: rgba(255,255,255,0.06); color: #fff; }
+.sidebar nav a i { width: 20px; text-align: center; color: #7b2cbf; }
+.main-area { background: #12142b; border-radius: 1.25rem; padding: 2rem; border: 1px solid rgba(255,255,255,0.05); }
+.main-area header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 1rem; }
+.main-area header h1 { font-size: 1.5rem; font-weight: 900; color: #fff; letter-spacing: -0.02em; }
+.main-area header span { color: #7ee787; font-size: 0.85rem; font-weight: 600; }
+.pay-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; }
+.pay-btn { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 0.75rem; padding: 1rem; text-align: center; color: #fff; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: background 0.15s, transform 0.15s; }
+.pay-btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); border-color: rgba(255,255,255,0.15); }
+.pay-btn i { font-size: 1.3rem; display: block; margin-bottom: 0.35rem; color: #ff2d75; }
+.method-box { margin-top: 1.5rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 0.75rem; padding: 1.25rem; }
+.method-box label { color: #ccc; font-weight: 600; display: block; margin-bottom: 0.5rem; }
+.method-box select { width: 100%; padding: 0.7rem; border-radius: 0.5rem; background: #0b0d14; border: 1px solid rgba(255,255,255,0.1); color: #fff; font-family: inherit; font-size: 0.95rem; }
+.instructions { margin-top: 1rem; padding: 1rem; background: linear-gradient(90deg, rgba(255,45,117,0.1), rgba(123,44,191,0.1)); border: 1px solid rgba(255,45,117,0.15); border-radius: 0.75rem; color: #eee; font-size: 0.9rem; }
+.instructions h4 { color: #ff6b9d; font-weight: 800; margin-bottom: 0.25rem; }
+.bonus-box { margin-top: 1rem; padding: 1rem; background: linear-gradient(90deg, rgba(255,215,0,0.08), rgba(255,165,0,0.08)); border: 1px solid rgba(255,215,0,0.2); border-radius: 0.75rem; display: flex; align-items: center; justify-content: space-between; }
+.bonus-box span { color: #ffb84d; font-weight: 700; font-size: 0.85rem; }
+.bonus-box a { color: #fff; text-decoration: none; font-weight: 700; font-size: 0.85rem; background: linear-gradient(135deg, #ff2d75, #7b2cbf); padding: 0.4rem 1rem; border-radius: 999px; }
+.right-panel { background: #12142b; border-radius: 1.25rem; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.05); height: fit-content; }
+.right-panel h3 { font-size: 1.1rem; font-weight: 900; color: #fff; margin-bottom: 1rem; letter-spacing: -0.02em; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.75rem; }
+.tx-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; color: #ccc; }
+.tx-table th { text-align: left; padding: 0.6rem 0.4rem; color: #777; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.tx-table td { padding: 0.65rem 0.4rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.tx-table .amount { color: #7ee787; font-weight: 700; }
+.tx-table .method-tag { display: inline-block; background: rgba(255,255,255,0.05); padding: 0.15rem 0.4rem; border-radius: 0.35rem; font-size: 0.75rem; color: #aaa; }
+@media (max-width: 1100px) { .dashboard-layout { grid-template-columns: 1fr; } .right-panel { order: -1; } }
+</style>
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="profile-card">
+      <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="avatar">
+      <h3>sakibsalam77788</h3>
+      <div class="balance">৳ 0</div>
+      <span class="badge">PRO</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#"><i class="fa-solid fa-cart-shopping"></i> New Order</a></li>
+        <li><a href="#"><i class="fa-solid fa-clock-rotate-left"></i> Orders</a></li>
+        <li><a href="#"><i class="fa-solid fa-layer-group"></i> Services</a></li>
+        <li><a href="#" class="active"><i class="fa-solid fa-money-bill-transfer"></i> Add Funds</a></li>
+        <li><a href="#"><i class="fa-solid fa-headset"></i> Support Box</a></li>
+        <li><a href="#"><i class="fa-solid fa-rotate"></i> Refill</a></li>
+        <li><a href="#"><i class="fa-solid fa-handshake"></i> Affiliates</a></li>
+        <li><a href="#"><i class="fa-solid fa-plug-circle-bolt"></i> API Panels</a></li>
+        <li><a href="#"><i class="fa-solid fa-bell"></i> Updates</a></li>
+        <li><a href="#"><i class="fa-solid fa-check-circle"></i> Recently Completed</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="main-area">
+    <header>
+      <h1>Add Funds <span>Recharge your balance using various payment methods</span></h1>
+    </header>
+
+    <div class="pay-grid">
+      <a href="#" class="pay-btn"><i class="fa-brands fa-bitcoin"></i> Binance</a>
+      <a href="#" class="pay-btn"><i class="fa-solid fa-circle-dot"></i> Cryptomus</a>
+      <a href="#" class="pay-btn"><i class="fa-solid fa-h"></i> Heletet</a>
+      <a href="#" class="pay-btn"><i class="fa-solid fa-file-invoice"></i> BD Manual</a>
+      <a href="#" class="pay-btn"><i class="fa-solid fa-robot"></i> BD Auto</a>
+      <a href="#" class="pay-btn"><i class="fa-solid fa-g"></i> GCash</a>
+      <a href="#" class="pay-btn"><i class="fa-brands fa-bitcoin"></i> WebMoney</a>
+      <a href="#" class="pay-btn"><i class="fa-solid fa-credit-card"></i> RedotPay</a>
+      <a href="#" class="pay-btn"><i class="fa-solid fa-mobile-screen"></i> Bkash</a>
+      <a href="#" class="pay-btn"><i class="fa-brands fa-bitcoin"></i> Bybit Pay</a>
+      <a href="#" class="pay-btn"><i class="fa-solid fa-credit-card"></i> Card Pay</a>
+      <a href="#" class="pay-btn"><i class="fa-solid fa-exchange-alt"></i> Exchange</a>
+    </div>
+
+    <div class="method-box">
+      <label for="payMethod">Method</label>
+      <select id="payMethod">
+        <option>Binance Auto Payment</option>
+        <option>Bkash Manual</option>
+        <option>Card Pay</option>
+        <option>WebMoney</option>
+      </select>
+    </div>
+
+    <div class="instructions">
+      <h4><i class="fa-solid fa-bolt"></i> BINANCE<br>SECURE AUTOMATIC PAYMENT</h4>
+      <p><strong>$100+ DEPOSIT</strong> &nbsp; <strong>2% BONUS</strong> &nbsp; &nbsp; <strong>$1000+ DEPOSIT</strong> &nbsp; <strong>5% BONUS</strong></p>
+      <p style="margin-top:0.25rem; color:#ccc;">TRANSACTION FEE: 0% (FREE)</p>
+    </div>
+
+    <div class="bonus-box">
+      <span><i class="fa-solid fa-gift"></i> Create Binance Account — Get Bonus!</span>
+      <a href="#">Sign Up</a>
+    </div>
+  </main>
+
+  <!-- Right -->
+  <aside class="right-panel">
+    <h3><i class="fa-solid fa-list"></i> Recent Transactions</h3>
+    <p style="font-size:0.8rem; color:#777; margin-bottom:1rem;">You can get more information about your Previous Payments</p>
+
+    <table class="tx-table">
+      <thead><tr><th>ID</th><th>Date</th><th>Method</th><th>Amount</th></tr></thead>
+      <tbody>
+        <tr><td>18816</td><td>2026-05-19 11:18:00</td><td><span class="method-tag">বিকাশ নগদ উপায়</span></td><td class="amount">৳ 87.70 <span style="font-size:0.7rem;color:#777;font-weight:500;">+ BONUS ৳0.77</span></td></tr>
+        <tr><td>16614</td><td>2026-02-20 15:54:00</td><td><span class="method-tag">বিকাশ নগদ উপায়</span></td><td class="amount">৳ 92.30</td></tr>
+        <tr><td>13792</td><td>2026-01-04 13:51:00</td><td><span class="method-tag">বিকাশ অনলাইন</span></td><td class="amount">৳ 101.40</td></tr>
+        <tr><td>13793</td><td>2026-01-04 11:41:00</td><td><span class="method-tag">বিকাশ অনলাইন</span></td><td class="amount">৳ 23.40</td></tr>
+        <tr><td>13770</td><td>2026-01-01 12:19:00</td><td><span class="method-tag">বিকাশ অনলাইন</span></td><td class="amount">৳ 102.70</td></tr>
+        <tr><td>13669</td><td>2025-12-31 19:55:00</td><td><span class="method-tag">বিকাশ অনলাইন</span></td><td class="amount">৳ 51.35</td></tr>
+        <tr><td>13670</td><td>2025-12-31 17:11:00</td><td><span class="method-tag">বিকাশ অনলাইন</span></td><td class="amount">৳ 19.50</td></tr>
+        <tr><td>13624</td><td>2025-12-13 09:51:00</td><td><span class="method-tag">বিকাশ অনলাইন</span></td><td class="amount">৳ 52.00</td></tr>
+      </tbody>
+    </table>
+  </aside>
+
+</div>
+
+</body>
+</html>
