@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Order — সোশ্যাল বুস্ট</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;600;800;900&family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+body { background: #0b0d14; color: #e0e0e8; font-family: 'Noto Sans Bengali', 'Inter', sans-serif; }
+.dashboard { display: grid; grid-template-columns: 260px 1fr; gap: 1.5rem; max-width: 1400px; margin: 0 auto; padding: 1.5rem 5%; min-height: 100vh; }
+
+/* Top Banner */
+.top-banner { grid-column: 1 / -1; background: linear-gradient(90deg, #2d1b4e, #16182a); border: 1px solid rgba(255,255,255,0.06); border-radius: 0.75rem; padding: 0.75rem 1.5rem; display: flex; align-items: center; justify-content: space-between; color: #ccc; font-weight: 700; font-size: 0.9rem; }
+.top-banner a { color: #fff; background: linear-gradient(135deg, #ff2d75, #7b2cbf); padding: 0.35rem 1rem; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 0.85rem; box-shadow: 0 4px 15px rgba(123,44,191,0.3); }
+
+/* Sidebar */
+.sidebar { background: linear-gradient(180deg, #16182a, #12142b); border-radius: 1.25rem; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.06); height: fit-content; }
+.profile-card { text-align: center; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 1rem; }
+.profile-card img { width: 72px; height: 72px; border-radius: 50%; border: 3px solid #7b2cbf; object-fit: cover; margin-bottom: 0.75rem; }
+.profile-card h3 { font-weight: 900; color: #fff; margin-bottom: 0.15rem; font-size: 1.1rem; letter-spacing: -0.02em; }
+.profile-card .balance { color: #777; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.25rem; }
+.profile-card .badge { display: inline-block; background: linear-gradient(135deg, #ff2d75, #ff6b9d); color: #fff; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 999px; font-weight: 800; box-shadow: 0 4px 10px rgba(255,45,117,0.25); }
+
+.sidebar nav ul { list-style: none; }
+.sidebar nav li { margin-bottom: 0.2rem; }
+.sidebar nav a { display: flex; align-items: center; gap: 0.75rem; padding: 0.7rem 0.75rem; color: #ccc; text-decoration: none; border-radius: 0.6rem; font-weight: 700; font-size: 0.9rem; transition: background 0.2s, color 0.2s; }
+.sidebar nav a:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.sidebar nav a.active { background: linear-gradient(135deg, #7b2cbf, #ff2d75); color: #fff; box-shadow: 0 4px 15px rgba(123,44,191,0.3); }
+.sidebar nav a i { width: 22px; text-align: center; color: #7b2cbf; font-size: 1rem; }
+.sidebar nav a.active i { color: #fff; }
+
+/* Stats Row */
+.stats-row { grid-column: 2; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.stat-card { background: linear-gradient(135deg, #16182a, #12142b); border: 1px solid rgba(255,255,255,0.06); border-radius: 1rem; padding: 1.25rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 6px 25px rgba(0,0,0,0.2); }
+.stat-card .icon { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #ff2d75, #7b2cbf); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; flex-shrink: 0; }
+.stat-card .info h4 { color: #ccc; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.15rem; letter-spacing: 0.02em; }
+.stat-card .info .val { color: #fff; font-weight: 900; font-size: 1.1rem; letter-spacing: -0.02em; }
+
+/* Platform Grid */
+.platform-grid { grid-column: 2; display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.6rem; margin-bottom: 1.5rem; }
+.platform-btn { background: #16182a; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.75rem; padding: 0.75rem 0.5rem; color: #ccc; text-decoration: none; font-weight: 700; font-size: 0.85rem; text-align: center; transition: all 0.15s; }
+.platform-btn:hover { background: #1e2140; border-color: rgba(255,255,255,0.2); color: #fff; transform: translateY(-2px); }
+.platform-btn.active { background: linear-gradient(135deg, #7b2cbf, #ff2d75); border-color: transparent; color: #fff; box-shadow: 0 8px 20px rgba(123,44,191,0.35); }
+.platform-btn i { display: block; font-size: 1.2rem; margin-bottom: 0.25rem; }
+
+/* Main Area */
+.main-area { background: linear-gradient(180deg, #16182a, #12142b); border-radius: 1.25rem; padding: 2rem; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+.main-area header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.main-area header h1 { font-size: 1.3rem; font-weight: 900; color: #fff; letter-spacing: -0.03em; }
+
+/* Form */
+.form-card { background: #12142b; border-radius: 1rem; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.06); }
+.form-card h2 { font-size: 1.1rem; font-weight: 900; color: #fff; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; color: #aaa; font-weight: 700; font-size: 0.8rem; margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 0.02em; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.7rem 0.75rem; border-radius: 0.5rem; background: #0b0d14; border: 1px solid rgba(255,255,255,0.1); color: #fff; font-family: inherit; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+.form-group input:focus, .form-group select:focus { border-color: #ff2d75; }
+
+/* Right Info */
+.info-card { background: linear-gradient(135deg, #16182a, #12142b); border-radius: 1rem; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.08); }
+.info-card .service-title { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 1rem; letter-spacing: -0.02em; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.75rem; }
+.info-card .service-price { color: #7ee787; font-weight: 800; font-size: 0.95rem; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.info-item { background: rgba(255,255,255,0.03); border-radius: 0.6rem; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.05); }
+.info-item .label { font-size: 0.75rem; color: #777; font-weight: 600; text-transform: uppercase; margin-bottom: 0.2rem; letter-spacing: 0.02em; }
+.info-item .value { font-size: 0.9rem; color: #e0e0e8; font-weight: 700; display: flex; align-items: center; gap: 0.4rem; }
+.info-item .value i { color: #7b2cbf; font-size: 0.85rem; }
+
+.order-layout { display: grid; grid-template-columns: 380px 1fr; gap: 1.5rem; }
+@media (max-width: 1100px) { .dashboard { grid-template-columns: 1fr; } .stats-row { grid-column: auto; } .platform-grid { grid-column: auto; } .order-layout { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="dashboard">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="profile-card">
+      <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="avatar">
+      <h3>sakibsalam77788</h3>
+      <div class="balance">৳ 0</div>
+      <span class="badge">PRO</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#"><i class="fa-solid fa-cart-shopping"></i> New Order</a></li>
+        <li><a href="#"><i class="fa-solid fa-clock-rotate-left"></i> Orders</a></li>
+        <li><a href="#"><i class="fa-solid fa-layer-group"></i> Services</a></li>
+        <li><a href="#"><i class="fa-solid fa-headset"></i> Support Box</a></li>
+        <li><a href="#"><i class="fa-solid fa-rotate"></i> Refill</a></li>
+        <li><a href="#"><i class="fa-solid fa-handshake"></i> Affiliates</a></li>
+        <li><a href="#"><i class="fa-solid fa-plug-circle-bolt"></i> Child Panels</a></li>
+        <li><a href="#"><i class="fa-solid fa-plug-circle-bolt"></i> API</a></li>
+        <li><a href="#"><i class="fa-solid fa-bell"></i> Updates</a></li>
+        <li><a href="#"><i class="fa-solid fa-check-circle"></i> Recently Completed</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <div>
+    <!-- Banner -->
+    <div class="top-banner">
+      <span>Your balance is low, Please Add Funds Now.</span>
+      <a href="#">Add Funds Now.</a>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="icon"><i class="fa-solid fa-user"></i></div>
+        <div class="info"><h4>Username</h4><div class="val">sakibsalam77788</div></div>
+      </div>
+      <div class="stat-card">
+        <div class="icon"><i class="fa-solid fa-cart-shopping"></i></div>
+        <div class="info"><h4>Total Orders</h4><div class="val">365706</div></div>
+      </div>
+      <div class="stat-card">
+        <div class="icon"><i class="fa-solid fa-coins"></i></div>
+        <div class="info"><h4>Total Cost</h4><div class="val">৳ 480.753</div></div>
+      </div>
+      <div class="stat-card">
+        <div class="icon"><i class="fa-solid fa-wallet"></i></div>
+        <div class="info"><h4>Remaining Balance</h4><div class="val">৳ 0</div></div>
+      </div>
+    </div>
+
+    <!-- Platform Grid -->
+    <div class="platform-grid">
+      <a href="#" class="platform-btn active"><i class="fa-solid fa-layer-group"></i> All</a>
+      <a href="#" class="platform-btn"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+      <a href="#" class="platform-btn"><i class="fa-brands fa-instagram"></i> Instagram</a>
+      <a href="#" class="platform-btn"><i class="fa-brands fa-telegram"></i> Telegram</a>
+      <a href="#" class="platform-btn"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+      <a href="#" class="platform-btn"><i class="fa-brands fa-youtube"></i> YouTube</a>
+      <a href="#" class="platform-btn"><i class="fa-brands fa-twitch"></i> Twitch</a>
+      <a href="#" class="platform-btn"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+      <a href="#" class="platform-btn"><i class="fa-brands fa-x-twitter"></i> Twitter</a>
+      <a href="#" class="platform-btn"><i class="fa-brands fa-discord"></i> Discord</a>
+      <a href="#" class="platform-btn"><i class="fa-brands fa-spotify"></i> Spotify</a>
+      <a href="#" class="platform-btn"><i class="fa-solid fa-globe"></i> Other</a>
+    </div>
+
+    <!-- Order Layout -->
+    <main class="order-layout">
+      <section class="form-card">
+        <h2>Create Order <a href="#">☰</a></h2>
+        <form class="order-form" onsubmit="event.preventDefault(); this.innerHTML='<h3 style=\'color:#7ee787;\'>অর্ডার সফল! আমরা যোগাযোগ করব।</h3>'; saveOrder();">
+          <div class="form-group">
+            <label><i class="fa-solid fa-magnifying-glass"></i> Search Services...</label>
+            <input type="text" id="searchInput" placeholder="Type to search..." oninput="updateService()">
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select id="catSelect" onchange="updateService()">
+              <option value="all">All Services</option>
+              <option value="facebook">Facebook Services</option>
+              <option value="instagram">Instagram Services</option>
+              <option value="tiktok">TikTok Services</option>
+              <option value="youtube">YouTube Services</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Service</label>
+            <select id="serviceSelect" onchange="updateInfo()">
+              <option>978 - Viral Hooks Videos | 1-350 Videos | No Copyright ≈ ৳26.00</option>
+              <option>1000 TikTok Like ≈ ৳100</option>
+              <option>2000 Follower ≈ ৳100</option>
+              <option>5000 View ≈ ৳100</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Link</label>
+            <input type="text" id="linkInput" placeholder="https://..." value="">
+          </div>
+          <div class="form-group">
+            <label>Average time <i class="fa-solid fa-circle-info" style="color:#777;font-size:0.75rem;"></i></label>
+            <input type="text" id="avgTime" value="1 minutes" readonly style="background:#0b0d14;border-color:rgba(255,255,255,0.1);color:#aaa;">
+          </div>
+          <div class="form-group">
+            <label>Charge</label>
+            <input type="number" id="chargeInput" placeholder="৳" value="0">
+          </div>
+          <div class="form-group">
+            <label>Quantity</label>
+            <input type="number" id="qtyInput" placeholder="Quantity (e.g. 1000)" value="0" min="0">
+          </div>
+          <button type="submit" style="width:100%;padding:0.85rem;background:linear-gradient(135deg,#ff2d75,#7b2cbf);color:#fff;border:none;border-radius:0.6rem;font-weight:800;font-size:1rem;cursor:pointer;margin-top:0.5rem;">Create Order</button>
+        </form>
+      </section>
+
+      <aside class="info-card">
+    <div class="service-title" id="infoTitle" style="font-size:1.2rem;font-weight:900;color:#fff;letter-spacing:-0.02em;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:0.75rem;margin-bottom:1rem;">978 - Viral Hooks Videos | 1-350 Videos | No Copyright ≈ <span class="service-price" style="color:#7ee787;font-weight:800;">৳26.00</span></div>
+        <div class="form-group" style="margin-top:1rem;">
+          <label>Description</label>
+          <textarea rows="3" style="width:100%;padding:0.75rem;background:#0b0d14;border:1px solid rgba(255,255,255,0.1);border-radius:0.5rem;color:#fff;font-family:inherit;font-size:0.9rem;outline:none;resize:vertical;">Enter description or notes here...</textarea>
+        </div>
+      </aside>
+    </main>
+
+  </div>
+
+<script>
+function filterService(cat) {
+  document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
+  event.target.closest('.platform-btn').classList.add('active');
+  document.getElementById('catSelect').value = cat === 'all' ? 'all' : cat;
+  updateService();
+}
+function updateService() {
+  const cat = document.getElementById('catSelect').value;
+  const select = document.getElementById('serviceSelect');
+  select.innerHTML = '';
+  if (cat === 'facebook' || cat === 'all') { select.add(new Option('978 - Viral Hooks Videos | 1-350 Videos | No Copyright ≈ ৳26.00', 'viral')); select.add(new Option('Facebook Page Like 1000 ≈ ৳35', 'fb_like')); select.add(new Option('Facebook Reaction 500 ≈ ৳45', 'fb_react')); }
+  if (cat === 'tiktok' || cat === 'all') { select.add(new Option('TikTok Like 5000 ≈ ৳100', 'tt_like')); select.add(new Option('TikTok Follower 2000 ≈ ৳100', 'tt_follow')); select.add(new Option('TikTok View 20000 ≈ ৳100', 'tt_view')); }
+  if (cat === 'instagram' || cat === 'all') { select.add(new Option('Instagram Follower 1500 ≈ ৳100', 'ig_follow')); select.add(new Option('Instagram Like 3000 ≈ ৳100', 'ig_like')); }
+  if (cat === 'youtube' || cat === 'all') { select.add(new Option('YouTube Subscriber 1000 ≈ ৳100', 'yt_sub')); select.add(new Option('YouTube View 20000 ≈ ৳100', 'yt_view')); }
+  if (cat === 'all') { select.add(new Option('978 - Viral Hooks Videos | 1-350 Videos | No Copyright ≈ ৳26.00', 'viral')); }
+  updateInfo();
+}
+function updateInfo() {
+  const val = document.getElementById('serviceSelect').value;
+  let title = val; let price = '৳0'; let linkType = 'Any Mail';
+  if (val === 'viral') { title = '978 - Viral Hooks Videos | 1-350 Videos | No Copyright'; price = '৳26.00'; }
+  else if (val === 'fb_like') { title = 'Facebook Page Like 1000'; price = '৳35'; }
+  else if (val === 'tt_like') { title = 'TikTok Like 5000'; price = '৳100'; linkType = 'Public Profile'; }
+  else if (val === 'yt_sub') { title = 'YouTube Subscriber 1000'; price = '৳100'; linkType = 'Channel Link'; }
+  document.getElementById('infoTitle').innerHTML = title + ' ≈ <span class="service-price">' + price + '</span>';
+  document.querySelector('.info-item .value').innerHTML = '<i class="fa-solid fa-link"></i> ' + linkType;
+}
+function saveOrder() {
+  const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+  orders.push({ name: 'Dashboard User', phone: '01712345678', service: document.getElementById('serviceSelect').selectedOptions[0].text, qty: document.getElementById('chargeInput').value || '0', link: document.getElementById('linkInput').value, date: new Date().toISOString() });
+  localStorage.setItem('orders', JSON.stringify(orders));
+  const fd = new FormData(); fd.append('service', document.getElementById('serviceSelect').selectedOptions[0].text); fd.append('qty', document.getElementById('chargeInput').value || '0'); fd.append('link', document.getElementById('linkInput').value);
+  fetch('https://formspree.io/f/xpqvplle', { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd });
+}
+</script>
+
+</body>
+</html>
