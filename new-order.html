@@ -253,21 +253,7 @@ function saveOrder() {
   localStorage.setItem('orders', JSON.stringify(orders));
   const fd = new FormData(); fd.append('service', document.getElementById('serviceSelect').selectedOptions[0].text); fd.append('qty', document.getElementById('chargeInput').value || '0'); fd.append('link', document.getElementById('linkInput').value);
   fetch('https://formspree.io/f/xpqvplle', { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd });
-}
-
-function toggleTheme() {
-  document.body.classList.toggle('light-mode');
-  const btn = document.querySelector('.top-banner button');
-  if (document.body.classList.contains('light-mode')) {
-    btn.textContent = '🌙 Dark';
-    btn.style.background = '#1a0b2e';
-    btn.style.color = '#fff';
-  } else {
-    btn.textContent = '☀ Light';
-    btn.style.background = '#fff';
-    btn.style.color = '#1a0b2e';
   }
-}
 </script>
 
 </body>
