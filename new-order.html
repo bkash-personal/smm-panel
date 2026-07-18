@@ -8,13 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;600;800;900&family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-body { background: #0b0d14; color: #e0e0e8; font-family: 'Noto Sans Bengali', 'Inter', sans-serif; }
+body { background: #ffffff; color: #222; font-family: 'Noto Sans Bengali', 'Inter', sans-serif; }
 .dashboard { display: grid; grid-template-columns: 260px 1fr; gap: 1.5rem; max-width: 1400px; margin: 0 auto; padding: 1.5rem 5%; min-height: 100vh; }
-
-/* Top Banner */
-.top-banner { grid-column: 1 / -1; background: linear-gradient(90deg, #2d1b4e, #16182a); border: 1px solid rgba(255,255,255,0.06); border-radius: 0.75rem; padding: 0.75rem 1.5rem; display: flex; align-items: center; justify-content: space-between; color: #ccc; font-weight: 700; font-size: 0.9rem; }
-.top-banner a { color: #fff; background: linear-gradient(135deg, #ff2d75, #7b2cbf); padding: 0.35rem 1rem; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 0.85rem; box-shadow: 0 4px 15px rgba(123,44,191,0.3); }
-
+  
 /* Sidebar */
 .sidebar { background: linear-gradient(180deg, #16182a, #12142b); border-radius: 1.25rem; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.06); height: fit-content; }
 .profile-card { text-align: center; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 1rem; }
@@ -70,26 +66,6 @@ body { background: #0b0d14; color: #e0e0e8; font-family: 'Noto Sans Bengali', 'I
 
 .order-layout { display: grid; grid-template-columns: 380px 1fr; gap: 1.5rem; }
 @media (max-width: 1100px) { .dashboard { grid-template-columns: 1fr; } .stats-row { grid-column: auto; } .platform-grid { grid-column: auto; } .order-layout { grid-template-columns: 1fr; } }
-/* Light Mode Overrides */
-.light-mode body { background: #f6f8fb !important; color: #1a0b2e !important; }
-.light-mode .dashboard { background: transparent !important; }
-.light-mode .sidebar { background: #fff !important; border-color: #ececf5 !important; }
-.light-mode .profile-card h3 { color: #1a0b2e !important; }
-.light-mode .profile-card .balance { color: #777 !important; }
-.light-mode .stat-card { background: #fff !important; border-color: #ececf5 !important; box-shadow: 0 6px 20px rgba(0,0,0,0.03) !important; }
-.light-mode .stat-card .info h4 { color: #777 !important; }
-.light-mode .stat-card .info .val { color: #1a0b2e !important; }
-.light-mode .platform-btn { background: #fff !important; border-color: #ececf5 !important; color: #3a3b4e !important; }
-.light-mode .platform-btn:hover { background: #faf5ff !important; border-color: #d6c6f0 !important; color: #1a0b2e !important; }
-.light-mode .main-area { background: #fff !important; border-color: #ececf5 !important; }
-.light-mode .form-card { background: #fff !important; border-color: #ececf5 !important; }
-.light-mode .form-group input, .light-mode .form-group select, .light-mode .form-group textarea { background: #fff !important; border-color: #ececf5 !important; color: #1a0b2e !important; }
-.light-mode .info-card { background: #fff !important; border-color: #ececf5 !important; }
-.light-mode .info-item { background: #f6f8fb !important; border-color: #ececf5 !important; }
-.light-mode .info-item .label { color: #777 !important; }
-.light-mode .info-item .value { color: #1a0b2e !important; }
-.light-mode .top-banner { background: linear-gradient(90deg, #f6f3ff, #fff) !important; color: #7b2cbf !important; border-color: #ececf5 !important; }
-
 </style>
 </head>
 <body>
@@ -112,7 +88,7 @@ body { background: #0b0d14; color: #e0e0e8; font-family: 'Noto Sans Bengali', 'I
       <span>Your balance is low, Please Add Funds Now.</span>
       <div style="display:flex;align-items:center;gap:0.5rem;">
         <a href="#">Add Funds Now.</a>
-        <button onclick="toggleTheme()" style="background:#fff;color:#1a0b2e;padding:0.35rem 0.75rem;border-radius:999px;border:1px solid #ececf5;font-weight:700;font-size:0.8rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.08);">☀ Light</button>
+        
       </div>
     </div>
 
@@ -253,7 +229,9 @@ function saveOrder() {
   localStorage.setItem('orders', JSON.stringify(orders));
   const fd = new FormData(); fd.append('service', document.getElementById('serviceSelect').selectedOptions[0].text); fd.append('qty', document.getElementById('chargeInput').value || '0'); fd.append('link', document.getElementById('linkInput').value);
   fetch('https://formspree.io/f/xpqvplle', { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd });
-  }
+}
+
+
 </script>
 
 </body>
